@@ -12,6 +12,8 @@
     "prisma:deploy": "prisma migrate deploy",
     "db:seed": "ts-node --esm scripts/seed.ts",
     "db:wipe": "psql \"$DATABASE_URL\" -f scripts/wipe_db.sql || echo 'Run wipe manually'",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "postinstall": "prisma generate",
     "format": "prettier --write ."
   },
   "devDependencies": {
