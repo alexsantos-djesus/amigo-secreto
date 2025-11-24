@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Group {
+  id                String        @id @default(uuid())
+  name              String
+  createdAt         DateTime      @default(now())
+  adminToken        String        @unique
+  adminParticipates Boolean       @default(false)
+  drawDone          Boolean       @default(false)
+  drawAt            DateTime?
+  participants      Participant[] // relação implícita: Participant.group referencia aqui
+  logs              Log[] // relação implícita: Log.group referencia aqui
+
+  @@map("groups")
+}
+
+model Participant {
+  id               String   @id @default(uuid())
+  groupId          String
+  name             String
+  whatsapp         String
+  gift1            String?
+  gift2            String?
+  gift3            String?
+  participantToken String   @unique
+  drawnTargetId    String?
+  createdAt        DateTime @default(now())
+
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, whatsapp])
+  @@index([groupId])
+  @@map("participants")
+}
+
+model Log {
+  id        String   @id @default(uuid())
+  groupId   String
+  action    String
+  payload   String?
+  createdAt DateTime @default(now())
+
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@map("logs")
+}

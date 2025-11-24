@@ -1,0 +1,97 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-lock.yaml
+.vscode/
+/.idea/
+.DS_Store
+*.log
+
+# Env files
+.env
+.env.*.local
+.env.local
+.env.test
+.env.production
+.env.*.backup
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs (frontend)
+frontend/dist/
+frontend/.vite
+dist/
+build/
+
+# Vite / dev
+.vite
+.vitepress/cache
+.cache
+
+# Backend build / runtime
+backend/dist/
+backend/build/
+coverage/
+tmp/
+temp/
+
+# Prisma
+prisma/migrations/
+node_modules/.prisma
+prisma/.env
+prisma/dev.db
+prisma/seed.js
+# if you generate client artifacts in a custom folder, ignore them:
+node_modules/@prisma/client
+
+# Database files
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+
+# IDE / editor
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+.env.docker
+Dockerfile*
+
+# Vercel
+.vercel/
+.vercel_build_output/
+.now
+
+# Generated files - optional
+dist/
+coverage/
+*.tgz
+
+# Misc
+*.pem
+*.key
+*.crt
+
+# Keep lockfile if you prefer, otherwise ignore
+# package-lock.json
+# yarn.lock
+.vercel

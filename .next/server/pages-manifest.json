@@ -1,0 +1,11 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/create": "pages/create.js",
+  "/admin/[adminToken]": "pages/admin/[adminToken].js",
+  "/": "pages/index.js",
+  "/api/participants": "pages/api/participants.js",
+  "/api/groups": "pages/api/groups.js",
+  "/api/groups/[adminToken]": "pages/api/groups/[adminToken].js"
+}
