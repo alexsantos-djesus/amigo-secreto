@@ -1,12 +1,12 @@
 // pages/create.tsx
+import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import gsap from "gsap";
 
 type ParticipantLink = { token: string; url: string };
 
-export default function CreatePage(): JSX.Element {
-  const router = useRouter();
+export default function CreatePage(): React.ReactElement {  const router = useRouter();
   const [name, setName] = useState("");
   const [adminParticipates, setAdminParticipates] = useState(true);
   const [loading, setLoading] = useState(false);
