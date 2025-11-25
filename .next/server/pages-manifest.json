@@ -1,14 +1,9 @@
 {
   "/_app": "pages/_app.js",
-  "/admin/[adminToken]": "pages/admin/[adminToken].html",
-  "/api/groups/[adminToken]": "pages/api/groups/[adminToken].js",
-  "/api/groups": "pages/api/groups.js",
-  "/api/p/[participantToken]": "pages/api/p/[participantToken].js",
-  "/api/participants": "pages/api/participants.js",
-  "/create": "pages/create.html",
-  "/": "pages/index.html",
-  "/p/[participantToken]": "pages/p/[participantToken].html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/create": "pages/create.js",
+  "/": "pages/index.js",
+  "/p/[participantToken]": "pages/p/[participantToken].js",
+  "/api/p/[participantToken]": "pages/api/p/[participantToken].js"
 }
