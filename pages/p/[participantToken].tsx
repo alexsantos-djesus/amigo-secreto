@@ -58,72 +58,61 @@ export default function ParticipantPage() {
     }
   }
 
-  // If draw done and we have target -> show result
+  // Resultado: mobile-first card (substitui a tela verde)
   if (data && data.drawDone && data.me && data.me.drawnTarget) {
     const target = data.me.drawnTarget;
     return (
-      <main className="p-6 min-h-screen flex items-start justify-center bg-slate-50">
-        <div className="w-full max-w-lg mt-12 p-6 bg-white rounded-2xl shadow-xl text-center">
-          <h2 className="text-2xl font-extrabold mb-2">Seu amigo secreto</h2>
-          <p className="text-sm text-gray-500 mb-6">
-            Veja com carinho as informações abaixo — só você pode ver isto.
-          </p>
+      <main className="min-h-screen bg-slate-50 flex items-start justify-center p-4">
+        <div className="w-full max-w-lg mt-8">
+          <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div className="px-5 py-6 sm:px-8 sm:py-10 text-center">
+              <h2 className="text-lg sm:text-2xl font-extrabold text-slate-800 mb-1">Seu amigo secreto</h2>
+              <p className="text-sm text-slate-500 mb-4">Informações visíveis somente para você.</p>
 
-          <div className="mx-auto p-6 bg-gradient-to-b from-white to-indigo-50 rounded-xl shadow-inner">
-            <div className="text-lg font-semibold">{target.name}</div>
-            <div className="text-sm text-slate-600 mt-1">{target.whatsapp}</div>
+              <div className="mx-auto w-full max-w-xs sm:max-w-sm">
+                <div className="bg-white rounded-xl p-5 sm:p-6 border border-slate-100 shadow-sm text-center">
+                  <div className="text-2xl sm:text-3xl font-semibold text-slate-800 break-words">{target.name}</div>
+                  <div className="text-sm sm:text-base text-slate-600 mt-1 break-words">{target.whatsapp}</div>
 
-            <div className="mt-4 text-left text-sm text-gray-700">
-              <div className="font-medium mb-1">Sugestões de presente</div>
-              <ul className="list-disc list-inside">
-                {target.gift1 ? (
-                  <li>{target.gift1}</li>
-                ) : (
-                  <li className="text-gray-400 italic">Sem sugestão 1</li>
-                )}
-                {target.gift2 ? (
-                  <li>{target.gift2}</li>
-                ) : (
-                  <li className="text-gray-400 italic">Sem sugestão 2</li>
-                )}
-                {target.gift3 ? (
-                  <li>{target.gift3}</li>
-                ) : (
-                  <li className="text-gray-400 italic">Sem sugestão 3</li>
-                )}
-              </ul>
-            </div>
+                  <div className="mt-5 text-left text-sm sm:text-base text-slate-700">
+                    <div className="font-medium mb-2">Sugestões de presente</div>
+                    <ul className="list-disc list-inside space-y-1">
+                      {target.gift1 ? <li>{target.gift1}</li> : <li className="text-gray-400 italic">Sem sugestão 1</li>}
+                      {target.gift2 ? <li>{target.gift2}</li> : <li className="text-gray-400 italic">Sem sugestão 2</li>}
+                      {target.gift3 ? <li>{target.gift3}</li> : <li className="text-gray-400 italic">Sem sugestão 3</li>}
+                    </ul>
+                  </div>
 
-            <div className="mt-6 flex justify-center gap-3">
-              <a
-                className="px-4 py-2 rounded bg-green-600 text-white shadow"
-                href={`https://wa.me/${
-                  target.whatsapp
-                }?text=${encodeURIComponent(
-                  `Oi! Você foi tirado no Amigo Secreto — boa sorte!`
-                )}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Mandar WhatsApp
-              </a>
-              <button
-                className="px-4 py-2 rounded bg-gray-100 text-gray-800"
-                onClick={() => {
-                  const url =
-                    typeof window !== "undefined" ? window.location.href : "";
-                  navigator.clipboard?.writeText(url);
-                  showToast("Link copiado para a área de transferência", 1500);
-                }}
-              >
-                Copiar link
-              </button>
+                  <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                    <a
+                      className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 rounded bg-green-600 text-white text-sm sm:text-base shadow focus:outline-none focus:ring-2 focus:ring-green-500"
+                      href={`https://wa.me/${target.whatsapp}?text=${encodeURIComponent(`Oi! Você foi tirado no Amigo Secreto — boa sorte!`)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Mandar WhatsApp
+                    </a>
+                    <button
+                      type="button"
+                      className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 rounded border border-slate-200 text-sm sm:text-base text-slate-700 bg-white"
+                      onClick={() => {
+                        const url = typeof window !== "undefined" ? window.location.href : "";
+                        navigator.clipboard?.writeText(url);
+                        showToast("Link copiado para a área de transferência", 1500);
+                      }}
+                    >
+                      Copiar link
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="mt-6">
-            <Confetti />
-          </div>
+        {/* Confetti colocado fora do card para não prejudicar legibilidade */}
+        <div className="pointer-events-none fixed inset-0 z-0">
+          <Confetti />
         </div>
 
         {toastVisible && (
@@ -133,7 +122,7 @@ export default function ParticipantPage() {
               position: "fixed",
               left: "50%",
               transform: "translateX(-50%)",
-              top: 24,
+              top: 20,
               zIndex: 9999,
               opacity: 1,
             }}
